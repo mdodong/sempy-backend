@@ -1,0 +1,404 @@
+{
+    "swagger" : "2.0",
+    "info" : {
+        "description" : "Semux is an experimental high-performance blockchain platform that powers decentralized application.",
+        "version" : "2.1.0",
+        "title" : "SEMPY-SERVER - Semux Open API",
+        "contact" : {
+            "name" : "Semux Foundation",
+            "url" : "https://www.semux.org"
+        },
+        "license" : {
+            "name" : "MIT License",
+            "url" : "https://opensource.org/licenses/mit-license.php"
+        }
+    },
+    "schemes" : [
+        "http"
+    ],
+    "consumes" : [
+        "application/x-www-form-urlencoded"
+    ],
+    "produces" : [
+        "application/json"
+    ],
+    "basePath" : "/api",
+    "paths" : {
+        "/" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get root",
+                "operationId" : "app.api.get_root",
+                "produces" : [
+                    "application/json"
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/info" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Info",
+                "operationId" : "app.api.get_info",
+                "produces" : [
+                    "application/json"
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/pendingtx" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Pending Transactions",
+                "operationId" : "app.api.get_pending_tx",
+                "produces" : [
+                    "application/json"
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/latest-block-number" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Latest Block Number",
+                "operationId" : "app.api.get_latest_block_number",
+                "produces" : [
+                    "application/json"
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/latest-block" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Latest Block ",
+                "operationId" : "app.api.get_latest_block",
+                "produces" : [
+                    "application/json"
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/delegates" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Delegates",
+                "operationId" : "app.api.get_delegates",
+                "produces" : [
+                    "application/json"
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/validators" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Validators",
+                "operationId" : "app.api.get_validators",
+                "produces" : [
+                    "application/json"
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/votes" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Account Info",
+                "operationId" : "app.api.get_votes",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters" : [
+                    {
+                        "name" : "delegate",
+                        "in" : "query",
+                        "description" : "Address of the delegate to check for votes",
+                        "required" : true,
+                        "type" : "string"
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/block/{number}" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Account Info",
+                "operationId" : "app.api.get_block_by_number",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters" : [
+                    {
+                        "name" : "number",
+                        "in" : "path",
+                        "description" : "Block Number ",
+                        "required" : true,
+                        "type" : "integer"
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/block/{hash}" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Account Info",
+                "operationId" : "app.api.get_block_by_hash",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters" : [
+                    {
+                        "name" : "hash",
+                        "in" : "path",
+                        "description" : "Block Hash ",
+                        "required" : true,
+                        "type" : "string"
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/transaction/{hash}" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Transaction",
+                "operationId" : "app.api.get_transaction",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters" : [
+                    {
+                        "name" : "hash",
+                        "in" : "path",
+                        "description" : "Block Hash ",
+                        "required" : true,
+                        "type" : "string"
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/account" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Account Info",
+                "operationId" : "app.api.get_account",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters" : [
+                    {
+                        "name" : "address",
+                        "in" : "query",
+                        "description" : "Semux Address to check",
+                        "required" : true,
+                        "type" : "string"
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/account/votes" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Account Info",
+                "operationId" : "app.api.get_account_votes",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters" : [
+                    {
+                        "name" : "address",
+                        "in" : "query",
+                        "description" : "Semux Address to check",
+                        "required" : true,
+                        "type" : "string"
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/account/transactions" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Account Transactions",
+                "operationId" : "app.api.get_account_transactions",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters" : [
+                    {
+                        "name" : "address",
+                        "in" : "query",
+                        "description" : "Semux Address to check",
+                        "required" : true,
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "start",
+                        "in" : "query",
+                        "description" : "Start Index of transaction",
+                        "required" : true,
+                        "type" : "string",
+                        "pattern" : "^\\d+$"
+                    },
+                    {
+                        "name" : "end",
+                        "in" : "query",
+                        "description" : "End Index of transaction check",
+                        "required" : true,
+                        "type" : "string",
+                        "pattern" : "^\\d+$"
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/transaction/raw" : {
+            "post" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Broadcast Signed Raw Tx",
+                "operationId" : "app.api.broadcast_rawtx",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters" : [
+                    {
+                        "name" : "raw",
+                        "in" : "query",
+                        "description" : "Signed Raw Tx to broadcast",
+                        "required" : true,
+                        "type" : "string"
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
+        "/vote" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Vote from a Delegate",
+                "operationId" : "app.api.get_vote",
+                "produces" : [
+                    "application/json"
+                ],
+                "parameters" : [
+                    {
+                        "name" : "delegate",
+                        "in" : "query",
+                        "description" : "Delegate Semux Address to check",
+                        "required" : true,
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "voter",
+                        "in" : "query",
+                        "description" : "Voter Semux Address",
+                        "required" : true,
+                        "type" : "string"
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        }
+      }
+}
