@@ -1,10 +1,31 @@
 {% extends 'base.html' %}
-{% block title %}Hello World!{% endblock %}
+{% block title %}Block Explorer - Semux{% endblock %}
 {% block header %}
   <h1>Flask App</h1>
 {% endblock %}
 
 {% block content %}
-<h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+<h1>Latest Blocks</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Blocks</th>
+      <th>Validator</th>
+      <th>txs</th>
+      <th>Hash</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for block in latestBlocks %}
+    <tr>
+      <td>{{ block['number'] }}</td>
+      <td>{{ block['coinbase'] }}</td>
+      <td>{{ block['transactions'] }}</td>
+      <td>{{ block['hash'] }}</td>
+      <td>{{ block['timestamp'] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
