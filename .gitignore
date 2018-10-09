@@ -9,4 +9,4 @@
 
 sempy-backend/venv/
 
-#sempy-backend/config.py
+sempy-backend/config.py
