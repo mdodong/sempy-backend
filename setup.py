@@ -6,7 +6,6 @@ setup(name='sempy-backend',
       url='http://github.com/mdodong/sempy-backend',
       author='mdodong',
       license='MIT',
-      packages=['sempy-backend'],
       install_requires=[
           'flask',
           'flask-cors',
