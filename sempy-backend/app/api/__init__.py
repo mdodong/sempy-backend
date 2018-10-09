@@ -1,11 +1,6 @@
 import requests
 import config
 
-from flask import (
-    make_response,
-    abort
-)
-
 CLIENT = requests.Session()
 CLIENT.auth = (config.API_USERNAME, config.API_PASSWORD)
 HOST = config.API_HOST
@@ -57,6 +52,9 @@ def get_block_by_hash(hash):
 
 def get_delegates():
     return api('/delegates')
+
+def get_validators():
+    return api('/validators')
 
 def get_votes(delegate):
     params = {'delegate' : delegate}

@@ -126,6 +126,23 @@
                 }
             }
         },
+        "/validators" : {
+            "get" : {
+                "tags": [
+                  "semux"
+                ],
+                "summary" : "Get Validators",
+                "operationId" : "app.api.get_validators",
+                "produces" : [
+                    "application/json"
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "successful operation",
+                    }
+                }
+            }
+        },
         "/votes" : {
             "get" : {
                 "tags": [
