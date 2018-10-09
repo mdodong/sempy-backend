@@ -1,3 +1,4 @@
+import datetime
 import requests
 import config
 
@@ -86,3 +87,27 @@ def get_latest_block_number():
 def get_transaction(hash):
     params = {'hash' : hash}
     return api('/transaction', params)
+
+#block explorer utilities
+def build_dict(seq, key):
+    # return a new dictionary from a list of dictionaries identified by key
+    return dict((d[key], dict(d, index=index)) for (index, d) in enumerate(seq))
+
+def delegates_by_address():
+    delegates = get_delegates()['result']
+    return build_dict(delegates, key="address")
+
+def get_blocks(nBlocks=10):
+    delegates = delegates_by_address()
+    latestBlockNumber = int(get_latest_block_number()['result'])
+    blocks = []
+    for block in range(latestBlockNumber,(latestBlockNumber-nBlocks), -1):
+        theBlock = get_block_by_number(block)['result']
+        validatorName = delegates.get(theBlock['coinbase'])['name']
+        theBlock['coinbase'] = validatorName
+        txs = len(theBlock['transactions']) - 1
+        theBlock['transactions'] = txs
+        date = datetime.datetime.fromtimestamp(int(theBlock['timestamp'])/1000.0)
+        theBlock['timestamp'] = date = date.strftime('%Y-%m-%d %H:%M:%S')
+        blocks.append(theBlock)
+    return blocks
