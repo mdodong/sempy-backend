@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Block Explorer - Semux{% endblock %}
+{% block header %}
+  <h1>Flask App</h1>
+{% endblock %}
+
+{% block content %}
+<h1>Address Information</h1>
+
+    <table class="table table-borderless bg-light">
+      <tbody>
+        {% if address["name"] %}
+        <tr>
+          <td><h3>Name</h3></td>
+          <td>{{ address["name"] }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td>Address</td>
+          <td>{{ address["address"] }}</td>
+        </tr>
+        <tr>
+          <td>Total Balance</td>
+          <td>{{ address["totalBalance"] }}</td>
+        </tr>
+        <tr>
+          <td>Available</td>
+          <td>{{ address["available"] }}</td>
+        </tr>
+        <tr>
+          <td>Locked</td>
+          <td>{{ address["locked"] }}</td>
+        </tr>
+        <tr>
+          <td>Nonce</td>
+          <td>{{ address["nonce"] }}</td>
+        </tr>
+        <tr>
+        <tr>
+          <td>Transaction Count</td>
+          <td>{{ address["transactionCount"] }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+{% endblock %}

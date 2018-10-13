@@ -13,16 +13,18 @@
       <th>Validator</th>
       <th>txs</th>
       <th>Hash</th>
+      <th>Fee</th>
       <th>Timestamp</th>
     </tr>
   </thead>
   <tbody>
     {% for block in latestBlocks %}
     <tr>
-      <td>{{ block['number'] }}</td>
-      <td>{{ block['coinbase'] }}</td>
-      <td>{{ block['transactions'] }}</td>
-      <td>{{ block['hash'] }}</td>
+      <td><a href="/explorer/block/{{ block['number'] }}">{{ block['number'] }}</a></td>
+      <td><a href="/explorer/address/{{ block['coinbase'] }}">{{ block['validatorName'] }}</a></td>
+      <td>{{ block['transactionCount'] }}</td>
+      <td><a href="/explorer/block/{{ block['hash'] }}">{{ block['hash'] }}</a></td>
+      <td>{{ block["totalFees"] }}</td>
       <td>{{ block['timestamp'] }}</td>
     </tr>
     {% endfor %}

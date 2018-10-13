@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Block Explorer - Semux{% endblock %}
+{% block header %}
+  <h1>Flask App</h1>
+{% endblock %}
+
+{% block content %}
+<h1>Transaction Details </h1>
+
+    <table class="table table-borderless bg-light">
+      <tbody>
+        <tr>
+          <td>Hash</td>
+          <td>{{ transaction["hash"] }}</td>
+        </tr>
+        <tr>
+          <td>Block #</td>
+          <td><a href="/explorer/block/{{ transaction['blockNumber'] }}">{{ transaction["blockNumber"] }}</a></td>
+        </tr>
+        <tr>
+          <td>From</td>
+          <td>{{ transaction["from"] }}</td>
+        </tr>
+        <tr>
+          <td>To</td>
+          <td>{{ transaction["to"] }}</td>
+        </tr>
+        <tr>
+          <td>Type</td>
+          <td>{{ transaction["type"] }}</td>
+        </tr>
+        <tr>
+          <td>Value</td>
+          <td>{{ transaction["value"] }}</td>
+        </tr>
+        <tr>
+          <td>Fee</td>
+          <td>{{ transaction["fee"] }}</td>
+        </tr>
+        <tr>
+          <td>Nonce</td>
+          <td>{{ transaction["nonce"] }}</td>
+        </tr>
+        <tr>
+          <td>Data</td>
+          <td>{{ transaction["data"] }}</td>
+        </tr>
+        <tr>
+          <td>Timestamp</td>
+          <td>{{ transaction["timestamp"] }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+{% endblock %}

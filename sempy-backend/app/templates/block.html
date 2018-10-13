@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Block Explorer - Semux{% endblock %}
+{% block header %}
+  <h1>Flask App</h1>
+{% endblock %}
+
+{% block content %}
+<h1>Block #: {{ block["number"] }}</h1>
+
+    <table class="table table-borderless bg-light">
+      <tbody>
+        <tr>
+          <td>Height</td>
+          <td>{{ block["number"] }}</td>
+        </tr>
+        <tr>
+          <td>Timestamp</td>
+          <td>{{ block["timestamp"] }}</td>
+        </tr>
+        <tr>
+          <td>Transactions</td>
+          <td>{{ block["transactionCount"] }}</td>
+        </tr>
+        <tr>
+          <td>Block Hash</td>
+          <td>{{ block["hash"] }}</td>
+        </tr>
+        <tr>
+        <tr>
+          <td>Forged by</td>
+          <td><a href="/explorer/address/{{ block['coinbase'] }}">{{ block["validatorName"] }}</a></td>
+        </tr>
+        <tr>
+          <td>Data</td>
+          <td>{{ block["data"] }}</td>
+        </tr>
+      </tbody>
+    </table>
+    {% if block["transactionCount"] > 0 %}
+    <h1>Transactions</h1>
+    <table class="table bg-light">
+      <thead>
+        <tr>
+          <th>Hash</th>
+          <th>Type</th>
+          <th>Value</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Fee</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for x in range(block["transactionCount"]) %}
+        <tr>
+          <td><a href="/explorer/transaction/{{ block['transactions'][x+1]['hash'] }}">{{ block["transactions"][x+1]["hash"] | truncate(15) }} </a></td>
+          <td>{{ block["transactions"][x+1]["type"] }} </td>
+          <td>{{ block["transactions"][x+1]["value"] }}<small> SEM</small> </td>
+          <td>
+            <a href="/explorer/address/{{ block['transactions'][x+1]['from'] }}">
+              {% if block["transactions"][x+1]["fromName"] %}
+                {{ block["transactions"][x+1]["fromName"] }}
+              {% else %}
+                {{ block["transactions"][x+1]["from"] | truncate(15) }}
+              {% endif%}
+            </a>
+          </td>
+          <td>
+            <a href="/explorer/address/{{ block['transactions'][x+1]['to'] }}">
+              {% if block["transactions"][x+1]["toName"] %}
+                {{ block["transactions"][x+1]["toName"] }}
+              {% else %}
+                {{ block["transactions"][x+1]["to"] | truncate(15) }}
+              {% endif%}
+            </a>
+          </td>
+          <td>{{ block["transactions"][x+1]["fee"] }}<small> SEM</small> </td>
+          <td>{{ block["transactions"][x+1]["timestamp"] }} </td>
+        </tr>
+        {% endfor%}
+      </tbody>
+    </table>
+
+
+
+    {% endif %}
+
+
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Block Explorer - Semux{% endblock %}
+{% block header %}
+  <h1>Flask App</h1>
+{% endblock %}
+
+{% block content %}
+<h1>Delegates</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Votes</th>
+      <th>Ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for delegate in delegates %}
+    <tr>
+      <td>{{ loop.index0+1  }}</td>
+      <td><a href="/explorer/address/{{ delegate['address'] }}">{{ delegate["name"] }}</a></td>
+      <td>
+      {% if delegate["validator"] %}
+         <span class="border border-success rounded">Validator</span>
+        {% else %}
+        <span class="border border-warning rounded">Delegate</span>
+        {% endif %}
+      </td>
+      <td>{{ delegate["votes"] }} <small>SEM</small> </td>
+      <td>{{ "%0.2f"|format(delegate["ratio"]) }}%</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
