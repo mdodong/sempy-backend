@@ -1,5 +1,5 @@
 import sys, os
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, jsonify, render_template, request, redirect, url_for
 
 import app.api as api
 
@@ -13,6 +13,22 @@ def homepage():
 @mod.route('/explorer')
 def explorer():
     return homepage()
+
+@mod.route('/search', methods=['GET'])
+def search():
+    query = request.args.get("query")
+    if query.isdigit():
+        url = url_for('explorer.block_by_number', number=query)
+    elif len(query)==42:
+        url = url_for('explorer.semux_address', address=query)
+    elif len(query) == 66:
+        if api.get_block_by_hash(query)["result"] is None:
+            url = url_for('explorer.semux_transaction', hash=query)
+        else:
+            url = url_for('explorer.block_by_hash', hash=query)
+    else:
+        url = url_for('explorer.homepage')
+    return redirect(url)
 
 @mod.route('/explorer/block/<int:number>')
 def block_by_number(number):
